@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
-import Header from "./components/header/header.component";
 import Homepage from "./pages/hompage/homepage.component";
 import Shop from "./pages/shop/shop.component";
-import SignIn from "./components/sign-in/sign-in.component";
+import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
+import Header from "./components/header/header.component";
 import { auth } from "./components/firebase/firebase.utils";
 
 class App extends Component {
@@ -18,10 +18,9 @@ class App extends Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    auth.onAuthStateChanged(user => {
-      this.setState({ currentUser: user });
-      console.log(user);
-    });
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(user =>
+      this.setState({ currentUser: user })
+    );
   }
 
   componentWillUnmount() {
@@ -30,12 +29,12 @@ class App extends Component {
 
   render() {
     return (
-      <div className={"app"}>
-        <Header />
+      <div className={"App"}>
+        <Header currentUser={this.state.currentUser} />
         <Switch>
           <Route exact path={"/"} component={Homepage} />
           <Route exact path={"/shop"} component={Shop} />
-          <Route exact path={"/signin"} component={SignIn} />
+          <Route exact path={"/signin"} component={SignInAndSignUpPage} />
         </Switch>
       </div>
     );
