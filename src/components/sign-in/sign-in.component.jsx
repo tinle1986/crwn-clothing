@@ -32,14 +32,14 @@ class SignIn extends Component {
             name={"email"}
             value={this.state.email}
             type={"email"}
-            label={"email"}
+            label={"Email"}
             handleChange={this.handleChange}
           />
           <FormInput
             name={"password"}
             value={this.state.password}
             type={"password"}
-            label={"password"}
+            label={"Password"}
             handleChange={this.handleChange}
           />
           <div className="buttons">
