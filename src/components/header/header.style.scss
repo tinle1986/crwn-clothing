@@ -18,9 +18,15 @@
     align-items: center;
     justify-content: flex-end;
 
+    .greeting {
+      padding: 10px 15px;
+      font-style: italic;
+    }
     .option {
       padding: 10px 15px;
-      cursor: pointer;
+      .sign-out {
+        cursor: pointer;
+      }
     }
   }
 }

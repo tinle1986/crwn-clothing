@@ -16,10 +16,9 @@ class SignUp extends Component {
   }
 
   handleSubmit = async e => {
-    e.preventDefault();
     const { displayName, email, password, confirmPassword } = this.state;
     if (password !== confirmPassword) {
-      alert("Passwords don't match!");
+      alert("Passwords do not match");
       return;
     }
 
@@ -35,8 +34,8 @@ class SignUp extends Component {
         password: "",
         confirmPassword: ""
       });
-    } catch (err) {
-      console.log("Error signing up a new account!", err.message);
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -48,42 +47,42 @@ class SignUp extends Component {
     const { displayName, email, password, confirmPassword } = this.state;
     return (
       <div className={"sign-up"}>
-        <h2 className={'title'}>I do not have an account</h2>
+        <h2 className={"title"}>I do not have an account</h2>
         <span>Sign up with your email and password.</span>
         <form className={"sign-up-form"} onSubmit={this.handleSubmit}>
           <FormInput
-            name={"displayName"}
-            type={"text"}
-            value={displayName}
+            handleChange={this.handleChange}
             label={"Display Name"}
-            handleChange={this.handleChange}
+            type={"text"}
+            name={"displayName"}
+            value={displayName}
             required
           />
           <FormInput
-            name={"email"}
-            type={"email"}
-            value={email}
+            handleChange={this.handleChange}
             label={"Email"}
-            handleChange={this.handleChange}
+            type={"email"}
+            name={"email"}
+            value={email}
             required
           />
           <FormInput
-            name={"password"}
-            type={"password"}
-            value={password}
+            handleChange={this.handleChange}
             label={"Password"}
-            handleChange={this.handleChange}
+            type={"password"}
+            name={"password"}
+            value={password}
             required
           />
           <FormInput
-            name={"confirmPassword"}
-            type={"password"}
-            value={confirmPassword}
-            label={"Confirm Password"}
             handleChange={this.handleChange}
+            label={"Confirm Password"}
+            type={"password"}
+            name={"confirmPassword"}
+            value={confirmPassword}
             required
           />
-          <CustomButton type={"submit"}>Sign up</CustomButton>
+          <CustomButton type={"submit"}>Sign Up</CustomButton>
         </form>
       </div>
     );
