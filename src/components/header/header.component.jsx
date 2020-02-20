@@ -2,7 +2,8 @@ import React from "react";
 import "./header.style.scss";
 import { ReactComponent as Logo } from "../../assets/crown.svg.svg";
 import { Link } from "react-router-dom";
-import { auth } from "../firebase/firebase.utils";
+import { auth } from "../../firebase/firebase.utils";
+import { connect } from "react-redux";
 
 const Header = ({ currentUser }) => (
   <div className={"header"}>
@@ -21,8 +22,10 @@ const Header = ({ currentUser }) => (
       </Link>
       {currentUser ? (
         <div className={"option"}>
-          <span className={'greeting'}>Hello {currentUser.displayName},</span>
-          <span className={'sign-out'} onClick={() => auth.signOut()}>SIGN OUT</span>
+          <span className={"greeting"}>Hello {currentUser.displayName},</span>
+          <span className={"sign-out"} onClick={() => auth.signOut()}>
+            SIGN OUT
+          </span>
         </div>
       ) : (
         <Link to={"/signin"} className={"option"}>
@@ -33,4 +36,8 @@ const Header = ({ currentUser }) => (
   </div>
 );
 
-export default Header;
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser
+});
+
+export default connect(mapStateToProps)(Header);
